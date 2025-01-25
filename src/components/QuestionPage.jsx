@@ -40,11 +40,11 @@ export function QuestionPage({ onEnd, setResult }) {
   };
 
   return (
-    <div className="background question-page">
-      <main className="container">
-        <section className="img-container">
+    <div className="page question-page background">
+      <main>
+        <section>
           <div className="counter">
-            <span>{activeQuestion + 1}</span>/10
+            <span>{(activeQuestion < 9 ? "0" : "") + (activeQuestion + 1)}</span>/10
           </div>
           <img src={question.img} alt="assembly keys" />
         </section>
