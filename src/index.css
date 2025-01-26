@@ -11,6 +11,7 @@
   --orange-color: rgb(242, 153, 0);
   --light-orange-color: rgb(244, 221, 158);
   --grey-color: #292929;
+  --primary-color: rgb(242, 153, 0);
 }
 
 body {
@@ -133,6 +134,9 @@ p {
 }
 
 .choices li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 0 26px;
   border: 1px solid var(--grey-color);
@@ -142,13 +146,13 @@ p {
 }
 
 .choices li:hover,
-.choices li:active {
-  background-color: var(--light-orange-color);
+.choices li:active,
+.choices li.selected {
+  background-color: #d0cdc8;
 }
 
 .choices label {
-  display: flex;
-  gap: 20px;
+  flex: 1;
   cursor: inherit;
   user-select: none;
 }

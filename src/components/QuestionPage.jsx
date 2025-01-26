@@ -1,6 +1,7 @@
+import { RadioButton } from "primereact/radiobutton";
+import { useRef, useState } from "react";
 import questions from "../models/questions";
 import { Button } from "./Button";
-import { useRef, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 export function QuestionPage({ onEnd, setResult }) {
@@ -51,15 +52,23 @@ export function QuestionPage({ onEnd, setResult }) {
 
         <form className="choices" ref={formRef} onSubmit={handleSubmit}>
           <ul>
-            {question.choices.map((answer, idx) => (
-              <li key={idx} style={selectedAnswer === idx ? { backgroundColor: "rgb(244, 221, 158)" } : undefined}>
-                <label>
-                  {/* For some reason onChange doesn't work for the same selection on next question */}
-                  <input onInput={handleAnswerChange} type="radio" name="answer" value={idx} />
-                  {answer}
-                </label>
-              </li>
-            ))}
+            {question.choices.map((answer, idx) => {
+              const isSelected = selectedAnswer === idx;
+              const id = `answer-${idx}`;
+
+              return (
+                <li key={idx} className={isSelected ? "selected" : undefined}>
+                  <RadioButton
+                    inputId={id}
+                    name="answer"
+                    value={idx}
+                    onChange={handleAnswerChange}
+                    checked={isSelected}
+                  />
+                  <label htmlFor={id}>{answer}</label>
+                </li>
+              );
+            })}
           </ul>
           <Button>{isLastQuestion ? "End" : "Next"}</Button>
         </form>
